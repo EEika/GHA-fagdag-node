@@ -8,8 +8,9 @@ env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: "." # Function app path (denne trenger du ikke endre)
 
 jobs:
+
   build-and-test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: "Sjekk ut koden"
         uses: actions/checkout@v4
@@ -21,10 +22,12 @@ jobs:
           node-version: 20
 
       # Oppgave 4: Installere dependencies
-      # - name: npm install
+       - name: npm install
+        run: npm ci
 
       # Oppgave 5: Kjører testene i prosjektet. Feiler jobben dersom tester feiler.
-      #- name: Run tests
+      - name: Run tests
+        run: npm test
 
       # Oppgave 6: List ut npm dependencies med sårbarheter.
       #- name: Audit packages
